@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -89,9 +90,12 @@ export const ProjectsSection = () => {
               <Button 
                 variant="outline" 
                 className="w-full border-slate-300 hover:bg-slate-50 group-hover:border-blue-300 group-hover:text-blue-600 transition-colors"
+                asChild
               >
-                <ExternalLink className="w-4 h-4 mr-2" />
-                View Project
+                <Link to={`/project/${index + 1}`}>
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  View Project
+                </Link>
               </Button>
             </CardContent>
           </Card>
