@@ -11,9 +11,9 @@ const skills = [
 
 export const SkillsSection = () => {
   return (
-    <Card className="bg-white shadow-sm border-0 rounded-2xl">
+    <Card className="bg-gray-800 shadow-sm border-0 rounded-2xl">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold text-slate-900">
+        <CardTitle className="text-2xl font-bold text-white">
           Professional Skills
         </CardTitle>
       </CardHeader>
@@ -23,7 +23,7 @@ export const SkillsSection = () => {
             <Badge
               key={index}
               variant="secondary"
-              className="bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors cursor-pointer px-3 py-1"
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors cursor-pointer px-3 py-1"
             >
               {skill}
             </Badge>

@@ -124,29 +124,29 @@ const ProjectDetails = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
         <Breadcrumb className="mb-6">
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink asChild>
+              <BreadcrumbLink asChild className="text-gray-300 hover:text-white">
                 <Link to="/">Home</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
-            <BreadcrumbSeparator />
+            <BreadcrumbSeparator className="text-gray-500" />
             <BreadcrumbItem>
-              <BreadcrumbPage>Projects</BreadcrumbPage>
+              <BreadcrumbPage className="text-gray-200">Projects</BreadcrumbPage>
             </BreadcrumbItem>
-            <BreadcrumbSeparator />
+            <BreadcrumbSeparator className="text-gray-500" />
             <BreadcrumbItem>
-              <BreadcrumbPage>{projectData.title}</BreadcrumbPage>
+              <BreadcrumbPage className="text-gray-200">{projectData.title}</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
 
         {/* Back Button */}
-        <Button variant="ghost" asChild className="mb-6">
+        <Button variant="ghost" asChild className="mb-6 text-gray-300 hover:text-white hover:bg-gray-800">
           <Link to="/">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Profile
@@ -163,7 +163,7 @@ const ProjectDetails = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6">
-              <Badge className="mb-3 bg-blue-600 hover:bg-blue-700">
+              <Badge className="mb-3 bg-primary text-primary-foreground hover:bg-primary/90">
                 {projectData.type}
               </Badge>
               <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -181,19 +181,19 @@ const ProjectDetails = () => {
 
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-4">
-            <Button className="bg-blue-600 hover:bg-blue-700">
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
               <ExternalLink className="w-4 h-4 mr-2" />
               Live Demo
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700">
               <Github className="w-4 h-4 mr-2" />
               View Repository
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700">
               <Download className="w-4 h-4 mr-2" />
               Download
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700">
               <Share2 className="w-4 h-4 mr-2" />
               Share
             </Button>
@@ -213,19 +213,19 @@ const ProjectDetails = () => {
               </TabsList>
 
               <TabsContent value="overview" className="mt-6">
-                <Card>
+                <Card className="bg-gray-800">
                   <CardHeader>
-                    <CardTitle>Project Description</CardTitle>
+                    <CardTitle className="text-white">Project Description</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-slate-600 leading-relaxed mb-6">
+                    <p className="text-gray-300 leading-relaxed mb-6">
                       {projectData.description}
                     </p>
                     
                     <div className="prose max-w-none">
-                      <h3 className="text-lg font-semibold mb-3">README</h3>
-                      <pre className="bg-slate-100 p-4 rounded-lg overflow-x-auto text-sm">
-                        <code>{projectData.readme}</code>
+                      <h3 className="text-lg font-semibold mb-3 text-white">README</h3>
+                      <pre className="bg-gray-700 p-4 rounded-lg overflow-x-auto text-sm">
+                        <code className="text-gray-200">{projectData.readme}</code>
                       </pre>
                     </div>
                   </CardContent>
@@ -233,17 +233,17 @@ const ProjectDetails = () => {
               </TabsContent>
 
               <TabsContent value="demo" className="mt-6">
-                <Card>
+                <Card className="bg-gray-800">
                   <CardHeader>
-                    <CardTitle>Demo Videos</CardTitle>
+                    <CardTitle className="text-white">Demo Videos</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="bg-slate-100 rounded-lg aspect-video flex items-center justify-center">
-                        <Play className="w-12 h-12 text-slate-400" />
+                      <div className="bg-gray-700 rounded-lg aspect-video flex items-center justify-center">
+                        <Play className="w-12 h-12 text-gray-400" />
                       </div>
-                      <div className="bg-slate-100 rounded-lg aspect-video flex items-center justify-center">
-                        <Play className="w-12 h-12 text-slate-400" />
+                      <div className="bg-gray-700 rounded-lg aspect-video flex items-center justify-center">
+                        <Play className="w-12 h-12 text-gray-400" />
                       </div>
                     </div>
                   </CardContent>
@@ -251,28 +251,28 @@ const ProjectDetails = () => {
               </TabsContent>
 
               <TabsContent value="code" className="mt-6">
-                <Card>
+                <Card className="bg-gray-800">
                   <CardHeader>
-                    <CardTitle>Repository Information</CardTitle>
+                    <CardTitle className="text-white">Repository Information</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
                       <div>
-                        <h4 className="font-medium mb-2">Tech Stack Breakdown</h4>
+                        <h4 className="font-medium mb-2 text-white">Tech Stack Breakdown</h4>
                         <div className="grid grid-cols-2 gap-4">
                           <div>
-                            <p className="text-sm font-medium text-slate-700 mb-2">Frontend</p>
+                            <p className="text-sm font-medium text-gray-300 mb-2">Frontend</p>
                             <div className="space-y-1">
                               {projectData.techStack.filter(tech => tech.category === 'Frontend').map((tech, index) => (
-                                <Badge key={index} className={tech.color}>{tech.name}</Badge>
+                                <Badge key={index} className="bg-secondary text-secondary-foreground">{tech.name}</Badge>
                               ))}
                             </div>
                           </div>
                           <div>
-                            <p className="text-sm font-medium text-slate-700 mb-2">Backend</p>
+                            <p className="text-sm font-medium text-gray-300 mb-2">Backend</p>
                             <div className="space-y-1">
                               {projectData.techStack.filter(tech => tech.category === 'Backend').map((tech, index) => (
-                                <Badge key={index} className={tech.color}>{tech.name}</Badge>
+                                <Badge key={index} className="bg-accent text-accent-foreground">{tech.name}</Badge>
                               ))}
                             </div>
                           </div>
@@ -286,27 +286,28 @@ const ProjectDetails = () => {
               <TabsContent value="reviews" className="mt-6">
                 <div className="space-y-6">
                   {/* Leave Review Card */}
-                  <Card>
+                  <Card className="bg-gray-800">
                     <CardHeader>
-                      <CardTitle>Leave a Review</CardTitle>
+                      <CardTitle className="text-white">Leave a Review</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
                         <div>
-                          <label className="block text-sm font-medium mb-2">Rating</label>
+                          <label className="block text-sm font-medium mb-2 text-gray-300">Rating</label>
                           <div className="flex gap-1">
                             {renderStars(userRating, true)}
                           </div>
                         </div>
                         <div>
-                          <label className="block text-sm font-medium mb-2">Comment</label>
+                          <label className="block text-sm font-medium mb-2 text-gray-300">Comment</label>
                           <Textarea
                             placeholder="Share your thoughts about this project..."
                             value={reviewText}
                             onChange={(e) => setReviewText(e.target.value)}
+                            className="bg-gray-700 border-gray-600 text-gray-200"
                           />
                         </div>
-                        <Button className="bg-blue-600 hover:bg-blue-700">
+                        <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
                           Submit Review
                         </Button>
                       </div>
@@ -316,18 +317,18 @@ const ProjectDetails = () => {
                   {/* Reviews List */}
                   <div className="space-y-4">
                     {projectData.reviews.map((review, index) => (
-                      <Card key={index}>
+                      <Card key={index} className="bg-gray-800">
                         <CardContent className="pt-6">
                           <div className="flex items-start justify-between mb-3">
                             <div>
-                              <p className="font-medium">{review.user}</p>
+                              <p className="font-medium text-white">{review.user}</p>
                               <div className="flex gap-1 my-1">
                                 {renderStars(review.rating)}
                               </div>
                             </div>
-                            <p className="text-sm text-slate-500">{review.date}</p>
+                            <p className="text-sm text-gray-200">{review.date}</p>
                           </div>
-                          <p className="text-slate-600">{review.comment}</p>
+                          <p className="text-gray-300">{review.comment}</p>
                         </CardContent>
                       </Card>
                     ))}
@@ -340,114 +341,114 @@ const ProjectDetails = () => {
           {/* Right Column - Sidebar */}
           <div className="space-y-6">
             {/* Project Stats */}
-            <Card>
+            <Card className="bg-gray-800">
               <CardHeader>
-                <CardTitle>Project Stats</CardTitle>
+                <CardTitle className="text-white">Project Stats</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Star className="w-4 h-4 text-yellow-500" />
-                    <span className="text-sm">Stars</span>
+                    <span className="text-sm text-gray-300">Stars</span>
                   </div>
-                  <span className="font-medium">{projectData.stats.stars}</span>
+                  <span className="font-medium text-white">{projectData.stats.stars}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <GitFork className="w-4 h-4 text-slate-500" />
-                    <span className="text-sm">Forks</span>
+                    <GitFork className="w-4 h-4 text-gray-400" />
+                    <span className="text-sm text-gray-300">Forks</span>
                   </div>
-                  <span className="font-medium">{projectData.stats.forks}</span>
+                  <span className="font-medium text-white">{projectData.stats.forks}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Download className="w-4 h-4 text-slate-500" />
-                    <span className="text-sm">Downloads</span>
+                    <Download className="w-4 h-4 text-gray-400" />
+                    <span className="text-sm text-gray-300">Downloads</span>
                   </div>
-                  <span className="font-medium">{projectData.stats.downloads}</span>
+                  <span className="font-medium text-white">{projectData.stats.downloads}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Eye className="w-4 h-4 text-slate-500" />
-                    <span className="text-sm">Watchers</span>
+                    <Eye className="w-4 h-4 text-gray-400" />
+                    <span className="text-sm text-gray-300">Watchers</span>
                   </div>
-                  <span className="font-medium">{projectData.stats.watchers}</span>
+                  <span className="font-medium text-white">{projectData.stats.watchers}</span>
                 </div>
               </CardContent>
-            </Card>
+          </Card>
 
-            {/* Project Info */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Project Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <p className="text-sm font-medium text-slate-700">License</p>
-                  <p className="text-sm text-slate-600">{projectData.license}</p>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-slate-700">Commercial Model</p>
-                  <Badge variant="secondary">{projectData.commercialModel}</Badge>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-slate-700">Version</p>
-                  <p className="text-sm text-slate-600">{projectData.version}</p>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-slate-700">Last Updated</p>
-                  <p className="text-sm text-slate-600">{projectData.lastUpdated}</p>
-                </div>
-              </CardContent>
-            </Card>
+          {/* Project Info */}
+          <Card className="bg-gray-800">
+            <CardHeader>
+              <CardTitle className="text-white">Project Information</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <p className="text-sm font-medium text-gray-300">License</p>
+                <p className="text-sm text-gray-200">{projectData.license}</p>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-300">Commercial Model</p>
+                <Badge variant="secondary">{projectData.commercialModel}</Badge>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-300">Version</p>
+                <p className="text-sm text-gray-200">{projectData.version}</p>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-300">Last Updated</p>
+                <p className="text-sm text-gray-200">{projectData.lastUpdated}</p>
+              </div>
+            </CardContent>
+          </Card>
 
-            {/* Owner Information */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Project Owner</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-start gap-3 mb-4">
-                  <img
-                    src={projectData.owner.avatar}
-                    alt={projectData.owner.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <p className="font-medium">{projectData.owner.name}</p>
-                    <p className="text-sm text-slate-600">{projectData.owner.contribution}</p>
-                  </div>
+          {/* Owner Information */}
+          <Card className="bg-gray-800">
+            <CardHeader>
+              <CardTitle className="text-white">Project Owner</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-start gap-3 mb-4">
+                <img
+                  src={projectData.owner.avatar}
+                  alt={projectData.owner.name}
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+                <div>
+                  <p className="font-medium text-white">{projectData.owner.name}</p>
+                  <p className="text-sm text-gray-300">{projectData.owner.contribution}</p>
                 </div>
-                <Button variant="outline" className="w-full">
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Contact Owner
-                </Button>
-              </CardContent>
-            </Card>
+              </div>
+              <Button variant="outline" className="w-full border-gray-600 text-gray-300 hover:bg-gray-700">
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Contact Owner
+              </Button>
+            </CardContent>
+          </Card>
 
-            {/* Team Members */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Team Members</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  {projectData.team.map((member, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <img
-                        src={member.avatar}
-                        alt={member.name}
-                        className="w-8 h-8 rounded-full object-cover"
-                      />
-                      <div>
-                        <p className="text-sm font-medium">{member.name}</p>
-                        <p className="text-xs text-slate-600">{member.role}</p>
-                      </div>
+          {/* Team Members */}
+          <Card className="bg-gray-800">
+            <CardHeader>
+              <CardTitle className="text-white">Team Members</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {projectData.team.map((member, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <img
+                      src={member.avatar}
+                      alt={member.name}
+                      className="w-8 h-8 rounded-full object-cover"
+                    />
+                    <div>
+                      <p className="text-sm font-medium text-white">{member.name}</p>
+                      <p className="text-xs text-gray-300">{member.role}</p>
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
           </div>
         </div>
       </div>

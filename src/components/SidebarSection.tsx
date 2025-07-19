@@ -11,22 +11,22 @@ export const SidebarSection = () => {
   return (
     <div className="space-y-6">
       {/* Social Links */}
-      <Card className="bg-white shadow-sm border-0 rounded-2xl">
+      <Card className="bg-gray-800 shadow-sm border-0 rounded-2xl">
         <CardHeader>
-          <CardTitle className="text-xl font-bold text-slate-900">
+          <CardTitle className="text-xl font-bold text-white">
             Connect With Me
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <Button variant="outline" className="w-full justify-start border-slate-300 hover:bg-slate-50">
-            <Linkedin className="w-4 h-4 mr-3 text-blue-600" />
+          <Button variant="outline" className="w-full justify-start border-gray-600 text-gray-300 hover:bg-gray-700">
+            <Linkedin className="w-4 h-4 mr-3 text-blue-400" />
             LinkedIn
           </Button>
-          <Button variant="outline" className="w-full justify-start border-slate-300 hover:bg-slate-50">
-            <Github className="w-4 h-4 mr-3 text-slate-700" />
+          <Button variant="outline" className="w-full justify-start border-gray-600 text-gray-300 hover:bg-gray-700">
+            <Github className="w-4 h-4 mr-3 text-gray-300" />
             GitHub
           </Button>
-          <Button variant="outline" className="w-full justify-start border-slate-300 hover:bg-slate-50">
+          <Button variant="outline" className="w-full justify-start border-gray-600 text-gray-300 hover:bg-gray-700">
             <Twitter className="w-4 h-4 mr-3 text-blue-400" />
             Twitter
           </Button>
@@ -34,9 +34,9 @@ export const SidebarSection = () => {
       </Card>
 
       {/* Hobbies & Interests */}
-      <Card className="bg-white shadow-sm border-0 rounded-2xl">
+      <Card className="bg-gray-800 shadow-sm border-0 rounded-2xl">
         <CardHeader>
-          <CardTitle className="text-xl font-bold text-slate-900">
+          <CardTitle className="text-xl font-bold text-white">
             Hobbies & Interests
           </CardTitle>
         </CardHeader>
@@ -46,7 +46,7 @@ export const SidebarSection = () => {
               <Badge
                 key={index}
                 variant="outline"
-                className="border-slate-300 text-slate-600 hover:bg-slate-50 transition-colors"
+                className="border-gray-600 text-gray-300 hover:bg-gray-700 transition-colors"
               >
                 {hobby}
               </Badge>

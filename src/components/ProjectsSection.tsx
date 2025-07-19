@@ -55,13 +55,13 @@ export const ProjectsSection = () => {
   return (
     <div className="mb-12">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-slate-900 mb-4">Featured Projects</h2>
-        <p className="text-slate-600 text-lg">A showcase of my recent work and technical expertise</p>
+        <h2 className="text-3xl font-bold text-white mb-4">Featured Projects</h2>
+        <p className="text-gray-300 text-lg">A showcase of my recent work and technical expertise</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => (
-          <Card key={index} className="bg-white shadow-sm border-0 rounded-2xl overflow-hidden group hover:shadow-lg transition-all duration-300">
+          <Card key={index} className="bg-gray-800 shadow-sm border-0 rounded-2xl overflow-hidden group hover:shadow-lg transition-all duration-300">
             <div className="relative overflow-hidden">
               <img
                 src={project.image}
@@ -72,15 +72,15 @@ export const ProjectsSection = () => {
             </div>
             
             <CardContent className="p-6">
-              <h3 className="text-xl font-bold text-slate-900 mb-2">{project.title}</h3>
-              <p className="text-slate-600 mb-4 line-clamp-2">{project.description}</p>
+              <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+              <p className="text-gray-300 mb-4 line-clamp-2">{project.description}</p>
               
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.techStack.map((tech, techIndex) => (
                   <Badge
                     key={techIndex}
                     variant="secondary"
-                    className="bg-blue-50 text-blue-700 text-xs"
+                    className="bg-secondary text-secondary-foreground text-xs"
                   >
                     {tech}
                   </Badge>
@@ -89,7 +89,7 @@ export const ProjectsSection = () => {
               
               <Button 
                 variant="outline" 
-                className="w-full border-slate-300 hover:bg-slate-50 group-hover:border-blue-300 group-hover:text-blue-600 transition-colors"
+                className="w-full border-gray-600 text-gray-300 hover:bg-gray-700 hover:border-primary hover:text-primary transition-colors"
                 asChild
               >
                 <Link to={`/project/${index + 1}`}>
