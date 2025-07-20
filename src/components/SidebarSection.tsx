@@ -18,15 +18,15 @@ export const SidebarSection = () => {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <Button variant="outline" className="w-full justify-start border-gray-600 text-gray-300 hover:bg-gray-700">
+          <Button variant="outline" className="w-full justify-start text-gray-300">
             <Linkedin className="w-4 h-4 mr-3 text-blue-400" />
             LinkedIn
           </Button>
-          <Button variant="outline" className="w-full justify-start border-gray-600 text-gray-300 hover:bg-gray-700">
+          <Button variant="outline" className="w-full justify-start text-gray-300">
             <Github className="w-4 h-4 mr-3 text-gray-300" />
             GitHub
           </Button>
-          <Button variant="outline" className="w-full justify-start border-gray-600 text-gray-300 hover:bg-gray-700">
+          <Button variant="outline" className="w-full justify-start text-gray-300">
             <Twitter className="w-4 h-4 mr-3 text-blue-400" />
             Twitter
           </Button>
@@ -46,7 +46,7 @@ export const SidebarSection = () => {
               <Badge
                 key={index}
                 variant="outline"
-                className="border-gray-600 text-gray-300 hover:bg-gray-700 transition-colors"
+                className="text-gray-300 transition-colors"
               >
                 {hobby}
               </Badge>

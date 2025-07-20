@@ -37,7 +37,7 @@ export const Header = () => {
             <Badge variant="secondary" className="bg-accent text-accent-foreground">
               Freelancing
             </Badge>
-            <Badge variant="outline" className="border-gray-600 text-gray-300">
+            <Badge variant="outline" className="text-gray-300">
               Study
             </Badge>
           </div>
@@ -48,11 +48,11 @@ export const Header = () => {
               <Linkedin className="w-4 h-4 mr-2" />
               LinkedIn
             </Button>
-            <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700">
+            <Button variant="outline" className="text-gray-300">
               <Mail className="w-4 h-4 mr-2" />
               Email
             </Button>
-            <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700">
+            <Button variant="outline" className="text-gray-300">
               <Globe className="w-4 h-4 mr-2" />
               Website
             </Button>

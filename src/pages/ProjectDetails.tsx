@@ -171,7 +171,7 @@ const ProjectDetails = () => {
               </h1>
               <div className="flex flex-wrap gap-2 mb-4">
                 {projectData.techStack.map((tech, index) => (
-                  <Badge key={index} className={tech.color}>
+                  <Badge key={index} variant={tech.category === 'Frontend' ? 'secondary' : 'tertiary'}>
                     {tech.name}
                   </Badge>
                 ))}
@@ -185,15 +185,15 @@ const ProjectDetails = () => {
               <ExternalLink className="w-4 h-4 mr-2" />
               Live Demo
             </Button>
-            <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700">
+            <Button variant="outline" className="text-gray-300">
               <Github className="w-4 h-4 mr-2" />
               View Repository
             </Button>
-            <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700">
+            <Button variant="outline" className="text-gray-300">
               <Download className="w-4 h-4 mr-2" />
               Download
             </Button>
-            <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700">
+            <Button variant="outline" className="text-gray-300">
               <Share2 className="w-4 h-4 mr-2" />
               Share
             </Button>
@@ -419,7 +419,7 @@ const ProjectDetails = () => {
                   <p className="text-sm text-gray-300">{projectData.owner.contribution}</p>
                 </div>
               </div>
-              <Button variant="outline" className="w-full border-gray-600 text-gray-300 hover:bg-gray-700">
+              <Button variant="outline" className="w-full text-gray-300">
                 <MessageCircle className="w-4 h-4 mr-2" />
                 Contact Owner
               </Button>
