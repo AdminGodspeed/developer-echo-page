@@ -29,12 +29,13 @@ const projectData = {
   type: "Software",
   description: "A comprehensive full-stack e-commerce solution built with modern web technologies. Features include user authentication, product catalog, shopping cart, payment processing with Stripe integration, order management, and admin dashboard. The platform is designed to be scalable, secure, and user-friendly.",
   image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop",
-  techStack: {
-    Backend: ["Node.js", "Express", "MongoDB", "PostgreSQL"],
-    Frontend: ["Next.js", "React", "TypeScript", "Tailwind CSS"], 
-    DevOps: ["Docker", "AWS", "Vercel", "GitHub Actions"],
-    Testing: ["Jest", "Cypress", "React Testing Library"]
-  },
+  techStack: [
+    { name: "React", category: "Frontend", color: "bg-blue-100 text-blue-800" },
+    { name: "Node.js", category: "Backend", color: "bg-green-100 text-green-800" },
+    { name: "MongoDB", category: "Backend", color: "bg-green-100 text-green-800" },
+    { name: "Stripe", category: "Backend", color: "bg-green-100 text-green-800" },
+    { name: "Jest", category: "Tests", color: "bg-red-100 text-red-800" }
+  ],
   stats: {
     stars: 124,
     forks: 32,
@@ -76,38 +77,15 @@ npm start
 4. Run the development server`,
   team: [
     {
-      name: "John Doe",
+      name: "John Developer",
       role: "Lead Developer",
-      contribution: "Built the core API and database architecture",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
     },
     {
-      name: "Jane Smith", 
-      role: "Frontend Developer",
-      contribution: "Implemented the user interface and responsive design",
+      name: "Sarah Designer",
+      role: "UI/UX Designer",
       avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face"
-    },
-    {
-      name: "Mike Johnson",
-      role: "DevOps Engineer", 
-      contribution: "Set up deployment pipeline and monitoring",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
     }
-  ],
-  myContribution: "Led the architectural design and implemented the core authentication system. Collaborated with the team on API design and database optimization strategies.",
-  releases: [
-    { version: "v2.1.0", date: "2024-01-15", notes: "Added Stripe payment integration and improved performance" },
-    { version: "v2.0.0", date: "2023-12-01", notes: "Major UI overhaul and mobile responsiveness" },
-    { version: "v1.1.0", date: "2023-10-15", notes: "Added user dashboard and order tracking" },
-    { version: "v1.0.0", date: "2023-08-01", notes: "Initial release with core e-commerce features" }
-  ],
-  videos: [
-    { title: "Platform Demo", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
-    { title: "Admin Features", url: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
-  ],
-  testimonials: [
-    { name: "Sarah Wilson", role: "Product Manager", video: "https://www.youtube.com/embed/dQw4w9WgXcQ" },
-    { name: "David Chen", role: "Tech Lead", video: "https://www.youtube.com/embed/dQw4w9WgXcQ" }
   ],
   reviews: [
     {
@@ -167,50 +145,38 @@ const ProjectDetails = () => {
           </BreadcrumbList>
         </Breadcrumb>
 
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <Button variant="ghost" asChild className="text-gray-300 hover:text-white hover:bg-gray-800">
-            <Link to="/">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Projects
-            </Link>
-          </Button>
-          
-          <div className="flex gap-2">
-            <Button variant="outline" className="text-gray-300">
-              Edit Project
-            </Button>
-            <Button variant="outline" className="text-gray-300">
-              <Share2 className="w-4 h-4 mr-2" />
-              Share
-            </Button>
-          </div>
-        </div>
+        {/* Back Button */}
+        <Button variant="ghost" asChild className="mb-6 text-gray-300 hover:text-white hover:bg-gray-800">
+          <Link to="/">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Profile
+          </Link>
+        </Button>
 
-        {/* Project Header Info */}
-        <div className="mb-6">
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            <h1 className="text-3xl sm:text-4xl font-bold text-white">
-              {projectData.title}
-            </h1>
-            <Badge className="bg-primary text-primary-foreground">
-              {projectData.type}
-            </Badge>
-            <Badge variant="secondary">
-              {projectData.commercialModel}
-            </Badge>
-          </div>
-        </div>
-
-        {/* Cover Media Section */}
+        {/* Hero Section */}
         <div className="mb-8">
-          <div className="relative rounded-2xl overflow-hidden mb-6 aspect-video">
+          <div className="relative rounded-2xl overflow-hidden mb-6">
             <img
               src={projectData.image}
               alt={projectData.title}
-              className="w-full h-full object-cover"
+              className="w-full h-64 sm:h-80 object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6">
+              <Badge className="mb-3 bg-primary text-primary-foreground hover:bg-primary/90">
+                {projectData.type}
+              </Badge>
+              <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                {projectData.title}
+              </h1>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {projectData.techStack.map((tech, index) => (
+                  <Badge key={index} variant={tech.category === 'Frontend' ? 'secondary' : 'tertiary'}>
+                    {tech.name}
+                  </Badge>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Action Buttons */}
@@ -221,15 +187,15 @@ const ProjectDetails = () => {
             </Button>
             <Button variant="outline" className="text-gray-300">
               <Github className="w-4 h-4 mr-2" />
-              Repository
-            </Button>
-            <Button variant="outline" className="text-gray-300">
-              <ExternalLink className="w-4 h-4 mr-2" />
-              Documentation
+              View Repository
             </Button>
             <Button variant="outline" className="text-gray-300">
               <Download className="w-4 h-4 mr-2" />
               Download
+            </Button>
+            <Button variant="outline" className="text-gray-300">
+              <Share2 className="w-4 h-4 mr-2" />
+              Share
             </Button>
           </div>
         </div>
@@ -239,189 +205,83 @@ const ProjectDetails = () => {
           {/* Left Column - Main Content */}
           <div className="lg:col-span-2">
             <Tabs value={activeTab} onValueChange={setActiveTab}>
-              <TabsList className="grid w-full grid-cols-6">
+              <TabsList className="grid w-full grid-cols-4">
                 <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="team">Team</TabsTrigger>
-                <TabsTrigger value="videos">Videos</TabsTrigger>
-                <TabsTrigger value="releases">Releases</TabsTrigger>
-                <TabsTrigger value="testimonials">Testimonials</TabsTrigger>
+                <TabsTrigger value="demo">Demo</TabsTrigger>
+                <TabsTrigger value="code">Code</TabsTrigger>
                 <TabsTrigger value="reviews">Reviews</TabsTrigger>
               </TabsList>
 
               <TabsContent value="overview" className="mt-6">
-                <div className="space-y-6">
-                  {/* Description */}
-                  <Card className="bg-gray-800">
-                    <CardHeader>
-                      <CardTitle className="text-white">Project Description</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-300 leading-relaxed mb-6">
-                        {projectData.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-
-                  {/* Tech Stack */}
-                  <Card className="bg-gray-800">
-                    <CardHeader>
-                      <CardTitle className="text-white">Tech Stack</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {Object.entries(projectData.techStack).map(([category, techs]) => (
-                          <div key={category}>
-                            <h4 className="font-medium mb-3 text-white">{category}</h4>
-                            <div className="space-y-2">
-                              {techs.map((tech, index) => (
-                                <Badge key={index} variant={
-                                  category === 'Frontend' ? 'secondary' : 
-                                  category === 'Backend' ? 'tertiary' : 'default'
-                                }>
-                                  {tech}
-                                </Badge>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* README */}
-                  <Card className="bg-gray-800">
-                    <CardHeader>
-                      <CardTitle className="text-white">README</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="prose prose-invert max-w-none">
-                        <div className="text-gray-300 whitespace-pre-wrap">
-                          {projectData.readme}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* My Contribution */}
-                  <Card className="bg-gray-800">
-                    <CardHeader>
-                      <CardTitle className="text-white">My Contribution</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-300 leading-relaxed">
-                        {projectData.myContribution}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </div>
-              </TabsContent>
-
-              <TabsContent value="team" className="mt-6">
                 <Card className="bg-gray-800">
                   <CardHeader>
-                    <CardTitle className="text-white">Team Members</CardTitle>
+                    <CardTitle className="text-white">Project Description</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {projectData.team.map((member, index) => (
-                        <Card key={index} className="bg-gray-700">
-                          <CardContent className="pt-6">
-                            <div className="text-center">
-                              <img
-                                src={member.avatar}
-                                alt={member.name}
-                                className="w-16 h-16 rounded-full mx-auto mb-4 object-cover"
-                              />
-                              <h4 className="font-medium text-white mb-1">{member.name}</h4>
-                              <p className="text-sm text-gray-300 mb-3">{member.role}</p>
-                              <p className="text-xs text-gray-200 italic">
-                                "{member.contribution}"
-                              </p>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
+                    <p className="text-gray-300 leading-relaxed mb-6">
+                      {projectData.description}
+                    </p>
+                    
+                    <div className="prose max-w-none">
+                      <h3 className="text-lg font-semibold mb-3 text-white">README</h3>
+                      <pre className="bg-gray-700 p-4 rounded-lg overflow-x-auto text-sm">
+                        <code className="text-gray-200">{projectData.readme}</code>
+                      </pre>
                     </div>
                   </CardContent>
                 </Card>
               </TabsContent>
 
-              <TabsContent value="videos" className="mt-6">
+              <TabsContent value="demo" className="mt-6">
                 <Card className="bg-gray-800">
                   <CardHeader>
-                    <CardTitle className="text-white">Project Videos</CardTitle>
+                    <CardTitle className="text-white">Demo Videos</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {projectData.videos.map((video, index) => (
-                        <div key={index} className="space-y-2">
-                          <h4 className="font-medium text-white">{video.title}</h4>
-                          <div className="aspect-video rounded-lg overflow-hidden bg-gray-700">
-                            <iframe
-                              src={video.url}
-                              title={video.title}
-                              className="w-full h-full"
-                              frameBorder="0"
-                              allowFullScreen
-                            />
-                          </div>
-                        </div>
-                      ))}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="bg-gray-700 rounded-lg aspect-video flex items-center justify-center">
+                        <Play className="w-12 h-12 text-gray-400" />
+                      </div>
+                      <div className="bg-gray-700 rounded-lg aspect-video flex items-center justify-center">
+                        <Play className="w-12 h-12 text-gray-400" />
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
               </TabsContent>
 
-              <TabsContent value="releases" className="mt-6">
+              <TabsContent value="code" className="mt-6">
                 <Card className="bg-gray-800">
                   <CardHeader>
-                    <CardTitle className="text-white">Releases & Versioning</CardTitle>
+                    <CardTitle className="text-white">Repository Information</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      {projectData.releases.map((release, index) => (
-                        <div key={index} className="border-l-2 border-primary pl-4 pb-4">
-                          <div className="flex items-center gap-2 mb-2">
-                            <Badge variant="secondary">{release.version}</Badge>
-                            <span className="text-sm text-gray-300">{release.date}</span>
+                      <div>
+                        <h4 className="font-medium mb-2 text-white">Tech Stack Breakdown</h4>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <p className="text-sm font-medium text-gray-300 mb-2">Frontend</p>
+                            <div className="space-y-1">
+                              {projectData.techStack.filter(tech => tech.category === 'Frontend').map((tech, index) => (
+                                <Badge key={index} className="bg-secondary text-secondary-foreground">{tech.name}</Badge>
+                              ))}
+                            </div>
                           </div>
-                          <p className="text-gray-200 text-sm">{release.notes}</p>
+                          <div>
+                            <p className="text-sm font-medium text-gray-300 mb-2">Backend</p>
+                            <div className="space-y-1">
+                              {projectData.techStack.filter(tech => tech.category === 'Backend').map((tech, index) => (
+                                <Badge key={index} className="bg-accent text-accent-foreground">{tech.name}</Badge>
+                              ))}
+                            </div>
+                          </div>
                         </div>
-                      ))}
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
               </TabsContent>
-
-              <TabsContent value="testimonials" className="mt-6">
-                <Card className="bg-gray-800">
-                  <CardHeader>
-                    <CardTitle className="text-white">Video Testimonials</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {projectData.testimonials.map((testimonial, index) => (
-                        <div key={index} className="space-y-2">
-                          <div className="flex items-center gap-2 mb-2">
-                            <h4 className="font-medium text-white">{testimonial.name}</h4>
-                            <span className="text-sm text-gray-300">- {testimonial.role}</span>
-                          </div>
-                          <div className="aspect-video rounded-lg overflow-hidden bg-gray-700">
-                            <iframe
-                              src={testimonial.video}
-                              title={`${testimonial.name} testimonial`}
-                              className="w-full h-full"
-                              frameBorder="0"
-                              allowFullScreen
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
 
               <TabsContent value="reviews" className="mt-6">
                 <div className="space-y-6">
