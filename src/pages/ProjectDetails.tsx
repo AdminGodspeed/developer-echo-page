@@ -1,25 +1,34 @@
 
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from '@/components/ui/breadcrumb';
 import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { 
   ArrowLeft, 
   ExternalLink, 
   Github, 
   Download, 
   Star, 
-  GitFork, 
-  Eye, 
   Calendar,
   User,
   MessageCircle,
   Share2,
-  Play
+  Play,
+  Database,
+  Globe,
+  Server,
+  Code,
+  Smartphone,
+  Cloud,
+  GitFork,
+  Eye
 } from 'lucide-react';
 
 // Mock project data - in a real app this would come from an API
@@ -30,11 +39,18 @@ const projectData = {
   description: "A comprehensive full-stack e-commerce solution built with modern web technologies. Features include user authentication, product catalog, shopping cart, payment processing with Stripe integration, order management, and admin dashboard. The platform is designed to be scalable, secure, and user-friendly.",
   image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop",
   techStack: [
-    { name: "React", category: "Frontend", color: "bg-blue-100 text-blue-800" },
-    { name: "Node.js", category: "Backend", color: "bg-green-100 text-green-800" },
-    { name: "MongoDB", category: "Backend", color: "bg-green-100 text-green-800" },
-    { name: "Stripe", category: "Backend", color: "bg-green-100 text-green-800" },
-    { name: "Jest", category: "Tests", color: "bg-red-100 text-red-800" }
+    { name: "React", category: "Frontend", icon: Code, color: "bg-blue-100 text-blue-800" },
+    { name: "TypeScript", category: "Frontend", icon: Code, color: "bg-blue-100 text-blue-800" },
+    { name: "Tailwind CSS", category: "Frontend", icon: Globe, color: "bg-blue-100 text-blue-800" },
+    { name: "Node.js", category: "Backend", icon: Server, color: "bg-green-100 text-green-800" },
+    { name: "Express.js", category: "Backend", icon: Server, color: "bg-green-100 text-green-800" },
+    { name: "PostgreSQL", category: "Database", icon: Database, color: "bg-purple-100 text-purple-800" },
+    { name: "Redis", category: "Database", icon: Database, color: "bg-purple-100 text-purple-800" },
+    { name: "Docker", category: "DevOps", icon: Cloud, color: "bg-gray-100 text-gray-800" },
+    { name: "AWS", category: "Cloud", icon: Cloud, color: "bg-orange-100 text-orange-800" },
+    { name: "Stripe", category: "Payment", icon: Globe, color: "bg-indigo-100 text-indigo-800" },
+    { name: "Jest", category: "Testing", icon: Code, color: "bg-red-100 text-red-800" },
+    { name: "React Native", category: "Mobile", icon: Smartphone, color: "bg-teal-100 text-teal-800" }
   ],
   stats: {
     stars: 124,
@@ -49,6 +65,7 @@ const projectData = {
   owner: {
     name: "John Developer",
     contribution: "Lead Developer & Maintainer",
+    contributionDescription: "Architected the entire full-stack solution, implemented core authentication system, designed database schema, and led the development team through all major releases.",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
   },
   liveDemo: "https://demo.example.com",
@@ -79,12 +96,20 @@ npm start
     {
       name: "John Developer",
       role: "Lead Developer",
+      contributionDescription: "Architected the entire full-stack solution, implemented core authentication system, designed database schema, and led the development team through all major releases.",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
     },
     {
       name: "Sarah Designer",
       role: "UI/UX Designer",
+      contributionDescription: "Created the complete design system, conducted user research, designed all user interfaces, and established brand guidelines for consistent visual identity.",
       avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face"
+    },
+    {
+      name: "Mike Chen",
+      role: "Backend Developer",
+      contributionDescription: "Developed the payment processing system, implemented API security measures, optimized database queries, and managed cloud infrastructure deployment.",
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
     }
   ],
   reviews: [
@@ -207,8 +232,8 @@ const ProjectDetails = () => {
             <Tabs value={activeTab} onValueChange={setActiveTab}>
               <TabsList className="grid w-full grid-cols-4">
                 <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="demo">Demo</TabsTrigger>
-                <TabsTrigger value="code">Code</TabsTrigger>
+                <TabsTrigger value="videos">Project Videos</TabsTrigger>
+                <TabsTrigger value="techstack">Tech Stack</TabsTrigger>
                 <TabsTrigger value="reviews">Reviews</TabsTrigger>
               </TabsList>
 
@@ -224,57 +249,145 @@ const ProjectDetails = () => {
                     
                     <div className="prose max-w-none">
                       <h3 className="text-lg font-semibold mb-3 text-white">README</h3>
-                      <pre className="bg-gray-700 p-4 rounded-lg overflow-x-auto text-sm">
-                        <code className="text-gray-200">{projectData.readme}</code>
-                      </pre>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="demo" className="mt-6">
-                <Card className="bg-gray-800">
-                  <CardHeader>
-                    <CardTitle className="text-white">Demo Videos</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="bg-gray-700 rounded-lg aspect-video flex items-center justify-center">
-                        <Play className="w-12 h-12 text-gray-400" />
-                      </div>
-                      <div className="bg-gray-700 rounded-lg aspect-video flex items-center justify-center">
-                        <Play className="w-12 h-12 text-gray-400" />
+                      <div className="bg-gray-700 p-4 rounded-lg prose prose-invert max-w-none text-gray-200">
+                        <ReactMarkdown>{projectData.readme}</ReactMarkdown>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
               </TabsContent>
 
-              <TabsContent value="code" className="mt-6">
+              <TabsContent value="videos" className="mt-6">
                 <Card className="bg-gray-800">
                   <CardHeader>
-                    <CardTitle className="text-white">Repository Information</CardTitle>
+                    <CardTitle className="text-white">Project Videos</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-4">
+                    <div className="space-y-6">
                       <div>
-                        <h4 className="font-medium mb-2 text-white">Tech Stack Breakdown</h4>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <p className="text-sm font-medium text-gray-300 mb-2">Frontend</p>
-                            <div className="space-y-1">
-                              {projectData.techStack.filter(tech => tech.category === 'Frontend').map((tech, index) => (
-                                <Badge key={index} className="bg-secondary text-secondary-foreground">{tech.name}</Badge>
-                              ))}
+                        <h4 className="text-lg font-medium text-white mb-2">Product Demo</h4>
+                        <p className="text-sm text-gray-300 mb-3">Complete walkthrough of the e-commerce platform features</p>
+                        <div className="bg-gray-700 rounded-lg aspect-video flex items-center justify-center group hover:bg-gray-600 transition-colors cursor-pointer">
+                          <div className="text-center">
+                            <Play className="w-16 h-16 text-gray-400 group-hover:text-white transition-colors mx-auto mb-2" />
+                            <p className="text-sm text-gray-400 group-hover:text-white">Watch Demo (5:32)</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="text-md font-medium text-white mb-2">Setup Tutorial</h4>
+                          <p className="text-sm text-gray-300 mb-3">Step-by-step installation guide</p>
+                          <div className="bg-gray-700 rounded-lg aspect-video flex items-center justify-center group hover:bg-gray-600 transition-colors cursor-pointer">
+                            <div className="text-center">
+                              <Play className="w-12 h-12 text-gray-400 group-hover:text-white transition-colors mx-auto mb-1" />
+                              <p className="text-xs text-gray-400 group-hover:text-white">3:15</p>
                             </div>
                           </div>
-                          <div>
-                            <p className="text-sm font-medium text-gray-300 mb-2">Backend</p>
-                            <div className="space-y-1">
-                              {projectData.techStack.filter(tech => tech.category === 'Backend').map((tech, index) => (
-                                <Badge key={index} className="bg-accent text-accent-foreground">{tech.name}</Badge>
-                              ))}
+                        </div>
+                        
+                        <div>
+                          <h4 className="text-md font-medium text-white mb-2">Feature Showcase</h4>
+                          <p className="text-sm text-gray-300 mb-3">Key features demonstration</p>
+                          <div className="bg-gray-700 rounded-lg aspect-video flex items-center justify-center group hover:bg-gray-600 transition-colors cursor-pointer">
+                            <div className="text-center">
+                              <Play className="w-12 h-12 text-gray-400 group-hover:text-white transition-colors mx-auto mb-1" />
+                              <p className="text-xs text-gray-400 group-hover:text-white">7:42</p>
                             </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              <TabsContent value="techstack" className="mt-6">
+                <Card className="bg-gray-800">
+                  <CardHeader>
+                    <CardTitle className="text-white">Technology Stack</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {/* Frontend */}
+                        <div>
+                          <h4 className="text-sm font-medium text-gray-300 mb-3 flex items-center gap-2">
+                            <Code className="w-4 h-4" />
+                            Frontend
+                          </h4>
+                          <div className="space-y-2">
+                            {projectData.techStack.filter(tech => tech.category === 'Frontend').map((tech, index) => (
+                              <div key={index} className="flex items-center gap-2 p-2 bg-gray-700 rounded-lg">
+                                <tech.icon className="w-4 h-4 text-blue-400" />
+                                <span className="text-sm text-gray-200">{tech.name}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Backend */}
+                        <div>
+                          <h4 className="text-sm font-medium text-gray-300 mb-3 flex items-center gap-2">
+                            <Server className="w-4 h-4" />
+                            Backend
+                          </h4>
+                          <div className="space-y-2">
+                            {projectData.techStack.filter(tech => tech.category === 'Backend').map((tech, index) => (
+                              <div key={index} className="flex items-center gap-2 p-2 bg-gray-700 rounded-lg">
+                                <tech.icon className="w-4 h-4 text-green-400" />
+                                <span className="text-sm text-gray-200">{tech.name}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Database */}
+                        <div>
+                          <h4 className="text-sm font-medium text-gray-300 mb-3 flex items-center gap-2">
+                            <Database className="w-4 h-4" />
+                            Database
+                          </h4>
+                          <div className="space-y-2">
+                            {projectData.techStack.filter(tech => tech.category === 'Database').map((tech, index) => (
+                              <div key={index} className="flex items-center gap-2 p-2 bg-gray-700 rounded-lg">
+                                <tech.icon className="w-4 h-4 text-purple-400" />
+                                <span className="text-sm text-gray-200">{tech.name}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* DevOps & Cloud */}
+                        <div>
+                          <h4 className="text-sm font-medium text-gray-300 mb-3 flex items-center gap-2">
+                            <Cloud className="w-4 h-4" />
+                            DevOps & Cloud
+                          </h4>
+                          <div className="space-y-2">
+                            {projectData.techStack.filter(tech => tech.category === 'DevOps' || tech.category === 'Cloud').map((tech, index) => (
+                              <div key={index} className="flex items-center gap-2 p-2 bg-gray-700 rounded-lg">
+                                <tech.icon className="w-4 h-4 text-orange-400" />
+                                <span className="text-sm text-gray-200">{tech.name}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Other Technologies */}
+                        <div>
+                          <h4 className="text-sm font-medium text-gray-300 mb-3 flex items-center gap-2">
+                            <Globe className="w-4 h-4" />
+                            Other
+                          </h4>
+                          <div className="space-y-2">
+                            {projectData.techStack.filter(tech => !['Frontend', 'Backend', 'Database', 'DevOps', 'Cloud'].includes(tech.category)).map((tech, index) => (
+                              <div key={index} className="flex items-center gap-2 p-2 bg-gray-700 rounded-lg">
+                                <tech.icon className="w-4 h-4 text-gray-400" />
+                                <span className="text-sm text-gray-200">{tech.name}</span>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       </div>
@@ -340,42 +453,6 @@ const ProjectDetails = () => {
 
           {/* Right Column - Sidebar */}
           <div className="space-y-6">
-            {/* Project Stats */}
-            <Card className="bg-gray-800">
-              <CardHeader>
-                <CardTitle className="text-white">Project Stats</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Star className="w-4 h-4 text-yellow-500" />
-                    <span className="text-sm text-gray-300">Stars</span>
-                  </div>
-                  <span className="font-medium text-white">{projectData.stats.stars}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <GitFork className="w-4 h-4 text-gray-400" />
-                    <span className="text-sm text-gray-300">Forks</span>
-                  </div>
-                  <span className="font-medium text-white">{projectData.stats.forks}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Download className="w-4 h-4 text-gray-400" />
-                    <span className="text-sm text-gray-300">Downloads</span>
-                  </div>
-                  <span className="font-medium text-white">{projectData.stats.downloads}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Eye className="w-4 h-4 text-gray-400" />
-                    <span className="text-sm text-gray-300">Watchers</span>
-                  </div>
-                  <span className="font-medium text-white">{projectData.stats.watchers}</span>
-                </div>
-              </CardContent>
-          </Card>
 
           {/* Project Info */}
           <Card className="bg-gray-800">
@@ -408,15 +485,22 @@ const ProjectDetails = () => {
               <CardTitle className="text-white">Project Owner</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex items-start gap-3 mb-4">
+              <div className="flex items-start gap-4 mb-6">
                 <img
                   src={projectData.owner.avatar}
                   alt={projectData.owner.name}
-                  className="w-12 h-12 rounded-full object-cover"
+                  className="w-14 h-14 rounded-full object-cover"
                 />
-                <div>
-                  <p className="font-medium text-white">{projectData.owner.name}</p>
-                  <p className="text-sm text-gray-300">{projectData.owner.contribution}</p>
+                <div className="flex-1 space-y-2">
+                  <div>
+                    <h4 className="font-semibold text-white text-base">{projectData.owner.name}</h4>
+                    <Badge variant="secondary" className="mt-1 text-xs">
+                      {projectData.owner.contribution}
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-gray-300 leading-relaxed">
+                    {projectData.owner.contributionDescription}
+                  </p>
                 </div>
               </div>
               <Button variant="outline" className="w-full text-gray-300">
@@ -432,17 +516,26 @@ const ProjectDetails = () => {
               <CardTitle className="text-white">Team Members</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-3">
+              <div className="space-y-6">
                 {projectData.team.map((member, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <img
-                      src={member.avatar}
-                      alt={member.name}
-                      className="w-8 h-8 rounded-full object-cover"
-                    />
-                    <div>
-                      <p className="text-sm font-medium text-white">{member.name}</p>
-                      <p className="text-xs text-gray-300">{member.role}</p>
+                  <div key={index} className="border-b border-gray-700 last:border-b-0 pb-6 last:pb-0">
+                    <div className="flex items-start gap-4">
+                      <img
+                        src={member.avatar}
+                        alt={member.name}
+                        className="w-12 h-12 rounded-full object-cover"
+                      />
+                      <div className="flex-1 space-y-2">
+                        <div>
+                          <h4 className="font-medium text-white text-sm">{member.name}</h4>
+                          <Badge variant="outline" className="mt-1 text-xs">
+                            {member.role}
+                          </Badge>
+                        </div>
+                        <p className="text-sm text-gray-300 leading-relaxed">
+                          {member.contributionDescription}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 ))}

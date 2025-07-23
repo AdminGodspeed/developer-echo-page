@@ -55,7 +55,7 @@ export const ProjectsSection = () => {
   return (
     <div className="mb-12">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-white mb-4">Featured Projects</h2>
+        <h2 className="text-3xl font-bold text-white mb-4">My Projects</h2>
         <p className="text-gray-300 text-lg">A showcase of my recent work and technical expertise</p>
       </div>
 
