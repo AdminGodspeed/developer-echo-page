@@ -9,10 +9,24 @@ import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
 
 const Index = () => {
+  // Dummy UserProfile data based on the schema
+  const dummyUserProfile = {
+    firstName: 'Alex',
+    lastName: 'Johnson',
+    profilePic: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
+    about: 'B.Tech grad and full stack developer, currently working remotely from the peaceful mountains of Dharamshala. I’m fun, talkative, love exploring new places, and always down for meaningful conversations, spontaneous plans, or just geeking out over cool ideas.',
+    currentStatuses: ['OPEN_FOR_WORK', 'FREELANCING', 'STUDY'],
+    socialLinks: [
+      { platform: 'LINKEDIN', url: 'https://www.linkedin.com/in/alexjohnson' },
+      { platform: 'PERSONAL_WEBSITE', url: 'https://www.alexjohnson.com' },
+      { platform: 'EMAIL', url: 'mailto:alex.johnson@example.com' },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Header />
+        <Header user={dummyUserProfile} />
         <MainContent />
         
         {/* Marketplace CTA */}
