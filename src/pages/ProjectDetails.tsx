@@ -14,7 +14,6 @@ import {
   ArrowLeft, 
   ExternalLink, 
   Github, 
-  Download, 
   Star, 
   Calendar,
   User,
@@ -213,11 +212,7 @@ const ProjectDetails = () => {
             <Button variant="outline" className="text-gray-300">
               <Github className="w-4 h-4 mr-2" />
               View Repository
-            </Button>
-            <Button variant="outline" className="text-gray-300">
-              <Download className="w-4 h-4 mr-2" />
-              Download
-            </Button>
+            </Button>  
             <Button variant="outline" className="text-gray-300">
               <Share2 className="w-4 h-4 mr-2" />
               Share

@@ -3,7 +3,11 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Play } from 'lucide-react';
 
-export const IntroVideoSection = () => {
+interface IntroVideoSectionProps {
+  videoUrl?: string;
+}
+
+export const IntroVideoSection: React.FC<IntroVideoSectionProps> = ({ videoUrl }) => {
   return (
     <Card className="bg-gray-800 shadow-sm border-0 rounded-2xl">
       <CardHeader>
@@ -12,7 +16,14 @@ export const IntroVideoSection = () => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="relative aspect-video bg-gray-700 rounded-xl overflow-hidden group cursor-pointer hover:bg-gray-600 transition-colors">
+        <div
+          className="relative aspect-video bg-gray-700 rounded-xl overflow-hidden group cursor-pointer hover:bg-gray-600 transition-colors"
+          onClick={() => {
+            if (videoUrl) {
+              window.open(videoUrl, '_blank');
+            }
+          }}
+        >
           <img
             src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=450&fit=crop"
             alt="Video thumbnail"
@@ -24,7 +35,11 @@ export const IntroVideoSection = () => {
             </div>
           </div>
         </div>
-        <p className="text-gray-300 mt-4">Get to know me better in this 2-minute introduction video.</p>
+        <p className="text-gray-300 mt-4">
+          {videoUrl
+            ? "Click to watch my introduction video."
+            : "Get to know me better in this 2-minute introduction video."}
+        </p>
       </CardContent>
     </Card>
   );

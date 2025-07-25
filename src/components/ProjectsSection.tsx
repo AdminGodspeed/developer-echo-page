@@ -35,20 +35,6 @@ const projects = [
     techStack: ["React Native", "Node.js", "AWS"],
     link: "#"
   },
-  {
-    title: "Social Media Platform",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=250&fit=crop",
-    description: "Social networking platform with real-time messaging and content sharing.",
-    techStack: ["Next.js", "GraphQL", "Redis", "Docker"],
-    link: "#"
-  },
-  {
-    title: "Learning Management System",
-    image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=400&h=250&fit=crop",
-    description: "Comprehensive LMS with video streaming, quizzes, and progress tracking.",
-    techStack: ["Angular", "Spring Boot", "MySQL"],
-    link: "#"
-  }
 ];
 
 export const ProjectsSection = () => {
@@ -59,46 +45,36 @@ export const ProjectsSection = () => {
         <p className="text-gray-300 text-lg">A showcase of my recent work and technical expertise</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project, index) => (
-          <Card key={index} className="bg-gray-800 shadow-sm border-0 rounded-2xl overflow-hidden group hover:shadow-lg transition-all duration-300">
-            <div className="relative overflow-hidden">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            </div>
-            
-            <CardContent className="p-6">
-              <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-              <p className="text-gray-300 mb-4 line-clamp-2">{project.description}</p>
-              
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.techStack.map((tech, techIndex) => (
-                  <Badge
-                    key={techIndex}
-                    variant="secondary"
-                    className="bg-secondary text-secondary-foreground text-xs"
-                  >
-                    {tech}
-                  </Badge>
-                ))}
+          <Link key={index} to={`/project/${index + 1}`} className="block">
+            <Card className="bg-gray-800 shadow-sm border-0 rounded-2xl overflow-hidden group hover:shadow-lg transition-all duration-300 h-full cursor-pointer hover:border-none">
+              <div className="relative overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
               
-              <Button 
-                variant="outline" 
-                className="w-full border-gray-600 text-gray-300 hover:bg-gray-700 hover:border-primary hover:text-primary transition-colors"
-                asChild
-              >
-                <Link to={`/project/${index + 1}`}>
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  View Project
-                </Link>
-              </Button>
-            </CardContent>
-          </Card>
+              <CardContent className="p-6">
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
+                <p className="text-gray-300 mb-4 line-clamp-2">{project.description}</p>
+                
+                <div className="flex flex-wrap gap-2">
+                  {project.techStack.map((tech, techIndex) => (
+                    <Badge
+                      key={techIndex}
+                      className="bg-primary text-dark text-xs"
+                    >
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
         ))}
       </div>
     </div>

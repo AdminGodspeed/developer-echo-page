@@ -4,56 +4,34 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Linkedin, Github, Twitter } from 'lucide-react';
+import { SkillsSection } from './SkillsSection';
+import SocialLinks, { SocialLink } from './SocialLinks';
+import Hobbies from './Hobbies';
+import { TestimonialsSection } from './TestimonialsSection';
 
-const hobbies = ['Photography', 'Rock Climbing', 'Cooking', 'Travel', 'Gaming', 'Reading'];
 
-export const SidebarSection = () => {
+interface SidebarSectionProps {
+  links: SocialLink[];
+  hobbies?: string[];
+  skills?: any[];
+}
+
+// Default hobbies if none are provided
+const defaultHobbies = ['Photography', 'Rock Climbing', 'Cooking', 'Travel', 'Gaming', 'Reading'];
+
+export const SidebarSection: React.FC<SidebarSectionProps> = ({
+  links,
+  hobbies = defaultHobbies,
+  skills
+}) => {
   return (
     <div className="space-y-6">
+      <SkillsSection skills={skills} />
       {/* Social Links */}
-      <Card className="bg-gray-800 shadow-sm border-0 rounded-2xl">
-        <CardHeader>
-          <CardTitle className="text-xl font-bold text-white">
-            Connect With Me
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          <Button variant="outline" className="w-full justify-start text-gray-300">
-            <Linkedin className="w-4 h-4 mr-3 text-blue-400" />
-            LinkedIn
-          </Button>
-          <Button variant="outline" className="w-full justify-start text-gray-300">
-            <Github className="w-4 h-4 mr-3 text-gray-300" />
-            GitHub
-          </Button>
-          <Button variant="outline" className="w-full justify-start text-gray-300">
-            <Twitter className="w-4 h-4 mr-3 text-blue-400" />
-            Twitter
-          </Button>
-        </CardContent>
-      </Card>
-
+      <SocialLinks links={links} />
       {/* Hobbies & Interests */}
-      <Card className="bg-gray-800 shadow-sm border-0 rounded-2xl">
-        <CardHeader>
-          <CardTitle className="text-xl font-bold text-white">
-            Hobbies & Interests
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-wrap gap-2">
-            {hobbies.map((hobby, index) => (
-              <Badge
-                key={index}
-                variant="outline"
-                className="text-gray-300 transition-colors"
-              >
-                {hobby}
-              </Badge>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      <Hobbies/>
+      <TestimonialsSection />
     </div>
   );
 };
